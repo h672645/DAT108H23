@@ -251,44 +251,11 @@ public class HovedIn {
 	    
 	    
 	    
-	    
-	    /* Oppgave 17: Lag en ny liste hvor du endrer emnet til alle som studerer 
-	     * datavitenskap til informatikk. 
-	     *  - Hva er gjennomsnittsalderen til de 5 yngste studentene som nå
-	     *   studerer informatikk?
-	     *  - Hvor mange av de 25 yngste studentene fikk F på eksamen?
-	     */
-	    
-	    
-	    
-	    /* Oppgave 18: Lag en ny liste hvor du endrer emnet til alle som studerer 
-	     * datavitenskap til informatikk. 
-	     *  - Hva er gjennomsnittsalderen til de 5 yngste studentene som nå
-	     *   studerer informatikk?
-	     *  - Hvor mange av de 25 yngste studentene fikk F på eksamen?
-	     */
-	    
-	    /* Oppgave 19: Lag en stream som returnerer en Map<String, List<Student>>
+	    /* Oppgave 17: Lag en stream som returnerer en Map<String, List<Student>>
 	     * hvor inputstrengene er navn på fag og outputstrengene er en liste med studenter
 	     * som tar det gitte faget.
 	     */
 	    
-	    Map<String,List<StudentIn>> emneOversikt = new HashMap<String,List<StudentIn>>();
-	    
-	    studenter.stream()
-	    		.forEach(s-> {
-	    			if(emneOversikt.containsKey(s.getFag())){
-	    				emneOversikt.get(s.getFag()).add(s);
-	    			} else {
-	    				List<StudentIn> studListe = new ArrayList<StudentIn>();
-	    				studListe.add(s);
-	    				emneOversikt.put(s.getFag(), studListe);
-	    			}
-	    		});
-	    
-	    System.out.print(emneOversikt);
-
-
 
 	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class Hoved {
@@ -309,44 +310,29 @@ public class Hoved {
 	    		
 	    // System.out.print(ans2);
 	    
-	    
-	    /* Oppgave 17: Lag en ny liste med studenter hvor du endrer emnet til alle som studerer 
-	     * datavitenskap til informatikk. 
-	     *  - Hva er gjennomsnittsalderen til de 5 yngste studentene som nå
-	     *   studerer informatikk?
-	     *  
-	     */
-
-   	    Boolean ans2 = studenter.stream()
-	    	    		.filter(s -> s.getFag() == "Datavitenskap")
-	    	    		.count() > 10;
-	    	    		
-	    
-	    
-	    /* Oppgave 18: Lag en ny liste hvor du endrer emnet til alle som studerer 
-	     * datavitenskap til informatikk. 
-	     *  - Hva er gjennomsnittsalderen til de 5 yngste studentene som nå
-	     *   studerer informatikk?
-	     *  - Hvor mange av de 25 yngste studentene fikk F på eksamen?
-	     */
-	    
-	    /* Oppgave 19: Lag en stream som returnerer en Map<String, List<Student>>
+	    	    
+	    	    
+	    /* Oppgave 17: Lag en stream som returnerer en Map<String, List<Student>>
 	     * hvor inputstrengene er navn på fag og outputstrengene er en liste med studenter
 	     * som tar det gitte faget.
 	     */
 	    
 	    Map<String,List<Student>> emneOversikt = new HashMap<String,List<Student>>();
 	    
+	    
+	    Consumer<Student> oppdater = s -> {
+	    	if(emneOversikt.containsKey(s.getFag())){
+	    		emneOversikt.get(s.getFag()).add(s);
+	    	} else {
+	    		List<Student> studListe = new ArrayList<Student>();
+	    		studListe.add(s);
+	    		emneOversikt.put(s.getFag(), studListe);
+	    	}
+	    };
+	    
+	    
 	    studenter.stream()
-	    		.forEach(s-> {
-	    			if(emneOversikt.containsKey(s.getFag())){
-	    				emneOversikt.get(s.getFag()).add(s);
-	    			} else {
-	    				List<Student> studListe = new ArrayList<Student>();
-	    				studListe.add(s);
-	    				emneOversikt.put(s.getFag(), studListe);
-	    			}
-	    		});
+	    		.forEach(s-> oppdater.accept(s));
 	    
 	    //System.out.print(emneOversikt);
 
