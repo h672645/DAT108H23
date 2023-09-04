@@ -1,14 +1,25 @@
-package forelesning04_output_streams.copy;
+package forelesning04_output_streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.function.Function;
 
 public class Hoved {
 
+
+	/* Dette er et løsningsforslag til oppgavene vi gikk gjennom i 
+	 * forelesning. Noen av spørsmålene endret vi litt på underveis. 
+	 * De orginale oppgavene finner dere i pakken 
+	 * forelesning04_input_streams.
+	 * 
+	 * 
+	 */
+	
 	public static void main(String[] args) {
 
 		// Liste med heltall
@@ -148,11 +159,17 @@ public class Hoved {
 	     * Bruk streams til å lage en ny liste med studenter hvor alle studentene
 	     * er et år eldre.
 	     * 
+	     * NB! ENDRING FRA TIMEN! 
+	     * 
 	     */
 	    
-	    Function<Student, Student> oppdaterAlder = (k -> {
-			k.setAlder(k.getAlder()+1);
-			return k;});
+	    Function<Student, Student> oppdaterAlder = (k -> new Student(
+	    		k.getFornavn(),
+	    		k.getEtternavn(),
+	    		k.getAlder()+1, 
+	    		k.getFag(),
+	    		k.getKarakter()
+	    		));
 	    
 	    studenter.stream()
 	    		.map(oppdaterAlder::apply)
@@ -198,7 +215,7 @@ public class Hoved {
 	    		.filter(a -> a.getAlder() < 22)
 	    		.sorted((s1,s2) -> (s1.getKarakter() - s2.getKarakter()))
 	    		.limit(3)
-	    		.forEach(s->System.out.println(s));
+	    		.forEach(s-> {}); //System.out.println(s));
 	    
 	    
 	    
@@ -225,7 +242,7 @@ public class Hoved {
 	    	.filter(s -> s.getFag() == "Informatikk")
 	    	.findAny();
 	    	
-	    System.out.println(asdf);
+	    //System.out.println(asdf);
 	    // -------------- YMSE OPPGAVER ---------------//
 
 	    /*Oppgave 13: Navneforkortelser
@@ -239,20 +256,31 @@ public class Hoved {
 	    
 	    
 	    studenter.stream()
-	    		//TODO: Map og filtrer
-	    		.forEach(s ->{});//System.out.print(s));
+	    		.map(s -> new Student(
+	    				s.getFornavn().substring(0,1), 
+	    				s.getEtternavn().substring(0,1), 
+	    				s.getAlder(), 
+	    				s.getFag(), 
+	    				s.getKarakter()))
+	    		.forEach(s -> {});// System.out.println(s));
+	    
+	    // System.out.print(studenter);
 	    
 
 	    /*Oppgave 14: 
 	     * 
-	     * Finn gjennomsnittsalderen til de av de 25 eldste.
+	     * Finn gjennomsnittsalderen til de 25 eldste studentene.
 	     * 
 	     */
 	    
-	    studenter.stream()
-	    		//TODO: Map og filtrer
-	    		.forEach(s ->{});//Fjern
+	    OptionalDouble avr = studenter.stream()
+	    		.sorted((s1,s2)-> s2.getAlder()-s1.getAlder())
+	    		.limit(25)
+	    		.map(s -> s.getAlder())
+	    		.mapToInt(Integer::intValue)
+	    		.average();
 	    
+	    //System.out.print(avr);
 	    
 	    
 	    /*Oppgave 15: 
@@ -261,6 +289,11 @@ public class Hoved {
 	     * 
 	     */
 	    
+	    Boolean ans = studenter.stream()
+	    		.filter(s -> s.getAlder() < 20)
+	    		.anyMatch(s -> s.getKarakter() == 'A');
+
+	    // System.out.print(ans);
 	    
 	    
 	    /*Oppgave 16: 
@@ -269,16 +302,25 @@ public class Hoved {
 	     *  
 	     */
 	    
+
+	    Boolean ans2 = studenter.stream()
+	    		.filter(s -> s.getFag() == "Datavitenskap")
+	    		.count() > 10;
+	    		
+	    // System.out.print(ans2);
 	    
 	    
-	    
-	    /* Oppgave 17: Lag en ny liste hvor du endrer emnet til alle som studerer 
+	    /* Oppgave 17: Lag en ny liste med studenter hvor du endrer emnet til alle som studerer 
 	     * datavitenskap til informatikk. 
 	     *  - Hva er gjennomsnittsalderen til de 5 yngste studentene som nå
 	     *   studerer informatikk?
-	     *  - Hvor mange av de 25 yngste studentene fikk F på eksamen?
+	     *  
 	     */
-	    
+
+   	    Boolean ans2 = studenter.stream()
+	    	    		.filter(s -> s.getFag() == "Datavitenskap")
+	    	    		.count() > 10;
+	    	    		
 	    
 	    
 	    /* Oppgave 18: Lag en ny liste hvor du endrer emnet til alle som studerer 

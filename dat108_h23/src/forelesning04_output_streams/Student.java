@@ -1,4 +1,4 @@
-package forelesning04_output_streams.copy;
+package forelesning04_output_streams;
 import java.util.ArrayList;
 import java.util.List;
 public class Student {
@@ -34,18 +34,6 @@ public class Student {
 
     public char getKarakter() {
         return karakter;
-    }
-
-    public void setFag(String fag) {
-        this.fag = fag;
-    }
-
-    public void setAlder(int alder) {
-        this.alder = alder;
-    }
-
-    public void setKarakter(char karakter) {
-        this.karakter = karakter;
     }
 
     @Override

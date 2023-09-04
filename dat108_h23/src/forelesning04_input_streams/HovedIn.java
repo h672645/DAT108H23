@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public class HovedIn {
+	
+	/* Dette er oppgavene vi gikk gjennom i forelesning. Noen 
+	 * av spørsmålene endret vi litt på underveis. Løsningsforslag
+	 * finner dere i pakken forelesning04_output_streams.
+	 * 
+	 * 
+	 */
 
 	public static void main(String[] args) {
 
