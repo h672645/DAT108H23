@@ -1,26 +1,19 @@
-package forelesning04_output_streams;
+package forelesning04_streams_input;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
-public class Hoved {
-
-
-	/* Dette er et løsningsforslag til oppgavene vi gikk gjennom i 
-	 * forelesning. Noen av spørsmålene endret vi litt på underveis. 
-	 * De orginale oppgavene finner dere i pakken 
-	 * forelesning04_input_streams.
+public class HovedIn {
+	
+	/* Dette er oppgavene vi gikk gjennom i forelesning. Noen 
+	 * av spørsmålene endret vi litt på underveis. Løsningsforslag
+	 * finner dere i pakken forelesning04_output_streams.
 	 * 
 	 * 
 	 */
-	
+
 	public static void main(String[] args) {
 
 		// Liste med heltall
@@ -34,11 +27,11 @@ public class Hoved {
         
         // Liste med studenter
 
-        List<Student> studenter = Student.genererStudenter();
+        List<StudentIn> studenter = StudentIn.genererStudenter();
 
 
 
-		// --------------- ØVELSER MED FILTER--------------- //
+		// --------------- 4 ØVELSER MED FILTER--------------- //
         
         /* Øvelse 1: Filtrer partall
 		 * 
@@ -51,11 +44,11 @@ public class Hoved {
 
         
         List<Integer> tallUt = tall.stream()
-        		.filter(a -> a % 2 == 0)
+        		//TODO: Filtrer
         		.toList();
         		
         
-       // System.out.println(tallUt);
+        //System.out.println(tallUt);
 
 		
 		/* Øvelse 2: Filtrer strenger etter lengde
@@ -68,12 +61,12 @@ public class Hoved {
        
 
         List<String> strengerUt = strenger.stream()
-        		.filter(s -> s.length() > 5)
+        		//TODO: Filtrer
         		.toList();
         
 
         
-//        System.out.println(strengerUt);
+        // System.out.println(strengerUt);
 		
         
         /* Øvelse 3: Filtrer studenter etter karakter
@@ -86,11 +79,11 @@ public class Hoved {
         
         
 
-        studenter.stream()
-        		.filter(stud -> stud.getKarakter() == 'A')
-        		.forEach(stud -> {} );//System.out::println);
+        List<StudentIn> studenterUt = studenter.stream()
+        		//TODO: Filtrer
+        		.toList();
 
-//        System.out.println(studenterUt);
+        // System.out.println(studenterUt);
         
         /* Øvelse 4: Filtrer studenter etter fag, karakter og alder
 		 * 
@@ -106,10 +99,8 @@ public class Hoved {
         
         
         studenter.stream()
-        	.filter(s -> s.getFag() == "Datavitenskap" || s.getFag() == "Informatikk" )
-        	.filter(s -> s.getKarakter() <= 'C')
-        	.filter(s -> s.getEtternavn().toUpperCase().charAt(0) >= 'P')
-        	.forEach(s -> {});
+        	//TODO: Filtrer
+        	.forEach(s -> {});// System.out.println(s));
 		
 				
 	
@@ -124,10 +115,10 @@ public class Hoved {
 		 */
 		
 	    List<Integer> tallUt2 = tall.stream()
-	    		.map(h -> h*2)
+	    		//TODO: Map
 	    		.toList();
 
-//         System.out.println(tallUt2);
+        // System.out.println(tallUt2);
 	    
 	    /* Oppgave 6: Omregning av temperatur
 	     * 
@@ -137,10 +128,10 @@ public class Hoved {
 	     */
 	    
 	    List<Integer> fahrenheit = tall.stream()
-	    		.map(c -> (int) (c*(9.0/5.0) +32.5))
+	    		//TODO: Map
 	    		.toList();
 
-       // System.out.println(fahrenheit);
+        // System.out.println(fahrenheit);
 
 	    /* Oppgave 7: Liste over lengder
 	     * 
@@ -148,8 +139,8 @@ public class Hoved {
 	     * og returnerer en ny liste med lengden av hver streng.
 	     */
 	    
-	    List<Integer> strenglengder = strenger.stream()
-	    		.map(s -> s.length())
+	    List<String> strenglengder = strenger.stream()
+	    		//TODO: Map
 	    		.toList();
 	    		
 
@@ -158,26 +149,17 @@ public class Hoved {
 	    /*Oppgave 8: Oppdater alder
 	     * 
 	     * Bruk streams til å lage en ny liste med studenter hvor alle studentene
-	     * er et år eldre.
-	     * 
-	     * NB! ENDRING FRA TIMEN! 
+	     * er et år eldre
 	     * 
 	     */
 	    
-	    Function<Student, Student> oppdaterAlder = (k -> new Student(
-	    		k.getFornavn(),
-	    		k.getEtternavn(),
-	    		k.getAlder()+1, 
-	    		k.getFag(),
-	    		k.getKarakter()
-	    		));
+	    List<StudentIn> studenterUt2 = studenter.stream()
+	    		//TODO: Map
+	    		.toList();
 	    
-	    studenter.stream()
-	    		.map(oppdaterAlder::apply)
-	    		.forEach(k -> {});
+	    // System.out.println(studenterUt2);
 	    
-	    
-	    //---------------- sorted() og limit() ----------------//
+	    //---------------- sort() og limit() ----------------//
 
 	    /*Oppgave 9: Yngst til eldst
 	     * 
@@ -187,36 +169,27 @@ public class Hoved {
 	     * 
 	     */
 	    
-//	    tall.stream()
-	//    	.sorted()
-	  //  	.forEach(System.out::println);
-	    
 	    studenter.stream()
-	    		.sorted((s1, s2) -> s1.getAlder() - s2.getAlder()) 
-	    		.forEach(s-> {});//System.out.println(s));
+	    		//TODO: 
+	    		.forEach(s->{});
 	    
 	    /* Oppgave 10: Finn den yngste studenten med karakteren 
 	     * 'A' i en liste med studentobjekter.
 	     * 
 	     */
 
-	    Optional<Student> student = studenter.stream()
-	    		.filter(s -> s.getKarakter() =='A')
-	    		.min((s1,s2) -> s1.getAlder() - s2.getAlder());
-	    
-	    //System.out.println(student);
+	    studenter.stream()
+	    		//TODO: 
+	    		.forEach(s->{});
 	    
 	    /* Oppgave 11. Skriv ut alderen og karakteren til de 
-	     * 3 beste Informatikk studentene under 22.
+	     * 10 beste Informatikk studentene under 22.
 	     * 
 	     */
 
 	    studenter.stream()
-	    		.filter(s -> s.getFag() == "Informatikk")
-	    		.filter(a -> a.getAlder() < 22)
-	    		.sorted((s1,s2) -> (s1.getKarakter() - s2.getKarakter()))
-	    		.limit(3)
-	    		.forEach(s-> {}); //System.out.println(s));
+	    		//TODO: 
+	    		.forEach(s->{});
 	    
 	    
 	    
@@ -231,19 +204,8 @@ public class Hoved {
 	     * 
 	     */
 	    
-	    Optional<Student> asdf = studenter.stream()
-	    	.sorted((s1,s2) -> s1.getAlder()-s2.getAlder())
-	    	.limit(40)
-	    	.sorted((s1,s2) -> s1.getKarakter()- s2.getKarakter())
-	    	.limit(30)
-	    	.sorted((s1,s2) -> s1.getEtternavn().compareTo(s2.getEtternavn()))
-	    	.limit(20)
-	    	.sorted((s1,s2) -> s1.getFornavn().length() - s2.getFornavn().length())
-	    	.limit(10)
-	    	.filter(s -> s.getFag() == "Informatikk")
-	    	.findAny();
-	    	
-	    //System.out.println(asdf);
+	    
+	    
 	    // -------------- YMSE OPPGAVER ---------------//
 
 	    /*Oppgave 13: Navneforkortelser
@@ -257,31 +219,20 @@ public class Hoved {
 	    
 	    
 	    studenter.stream()
-	    		.map(s -> new Student(
-	    				s.getFornavn().substring(0,1), 
-	    				s.getEtternavn().substring(0,1), 
-	    				s.getAlder(), 
-	    				s.getFag(), 
-	    				s.getKarakter()))
-	    		.forEach(s -> {});// System.out.println(s));
-	    
-	    // System.out.print(studenter);
+	    		//TODO: Map og filtrer
+	    		.forEach(s ->{});//System.out.print(s));
 	    
 
 	    /*Oppgave 14: 
 	     * 
-	     * Finn gjennomsnittsalderen til de 25 eldste studentene.
+	     * Finn gjennomsnittsalderen til de av de 25 eldste.
 	     * 
 	     */
 	    
-	    OptionalDouble avr = studenter.stream()
-	    		.sorted((s1,s2)-> s2.getAlder()-s1.getAlder())
-	    		.limit(25)
-	    		.map(s -> s.getAlder())
-	    		.mapToInt(Integer::intValue)
-	    		.average();
+	    studenter.stream()
+	    		//TODO: Map og filtrer
+	    		.forEach(s ->{});//Fjern
 	    
-	    //System.out.print(avr);
 	    
 	    
 	    /*Oppgave 15: 
@@ -290,11 +241,6 @@ public class Hoved {
 	     * 
 	     */
 	    
-	    Boolean ans = studenter.stream()
-	    		.filter(s -> s.getAlder() < 20)
-	    		.anyMatch(s -> s.getKarakter() == 'A');
-
-	    // System.out.print(ans);
 	    
 	    
 	    /*Oppgave 16: 
@@ -303,40 +249,13 @@ public class Hoved {
 	     *  
 	     */
 	    
-
-	    Boolean ans2 = studenter.stream()
-	    		.filter(s -> s.getFag() == "Datavitenskap")
-	    		.count() > 10;
-	    		
-	    // System.out.print(ans2);
 	    
-	    	    
-	    	    
+	    
 	    /* Oppgave 17: Lag en stream som returnerer en Map<String, List<Student>>
 	     * hvor inputstrengene er navn på fag og outputstrengene er en liste med studenter
 	     * som tar det gitte faget.
 	     */
 	    
-	    Map<String,List<Student>> emneOversikt = new HashMap<String,List<Student>>();
-	    
-	    
-	    Consumer<Student> oppdater = s -> {
-	    	if(emneOversikt.containsKey(s.getFag())){
-	    		emneOversikt.get(s.getFag()).add(s);
-	    	} else {
-	    		List<Student> studListe = new ArrayList<Student>();
-	    		studListe.add(s);
-	    		emneOversikt.put(s.getFag(), studListe);
-	    	}
-	    };
-	    
-	    
-	    studenter.stream()
-	    		.forEach(s-> oppdater.accept(s));
-	    
-	    //System.out.print(emneOversikt);
-
-
 
 	}
 }

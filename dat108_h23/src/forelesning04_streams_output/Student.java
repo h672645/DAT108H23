@@ -1,4 +1,4 @@
-package forelesning04_output_streams;
+package forelesning04_streams_output;
 import java.util.ArrayList;
 import java.util.List;
 public class Student {
