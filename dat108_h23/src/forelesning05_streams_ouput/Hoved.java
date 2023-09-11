@@ -372,6 +372,27 @@ public class Hoved {
          * nyttig når du arbeider med lister eller 
          * andre samlinger av elementer.
          * 
+         * FRA:
+         * [
+         * (asadf ,asdf ,asdf ,asdf )
+         * (asadf ,asdf ,asdf ,asdf )
+         * (asadf ,asdf ,asdf ,asdf )
+         * (asadf ,asdf ,asdf ,asdf )
+         * (asadf ,asdf ,asdf ,asdf )
+         * (asadf ,asdf ,asdf ,asdf )
+         * ]
+         * 
+         * TIL
+         * [
+         * asadf ,asdf ,asdf ,asdf, 
+         * asadf ,asdf ,asdf ,asdf, 
+         * asadf ,asdf ,asdf ,asdf, 
+         * asadf ,asdf ,asdf ,asdf, 
+         * asadf ,asdf ,asdf ,asdf, 
+         * asadf ,asdf ,asdf ,asdf, 
+         * ]
+         * 
+         * 
          * Hovedformålet med flatMap er å transformere 
          * hvert element i en strøm til en annen strøm 
          * og deretter kombinere (flate ut) resultatene 
@@ -402,18 +423,18 @@ public class Hoved {
         
         // Strømmer av strømmer
         
-        Stream<Stream<String>> listOfLists = Arrays.asList(
+        Stream<Stream<String>> streamOfStreams = Arrays.asList(
                 Arrays.asList("apple", "banana", "cherry").stream(),
                 Arrays.asList("date", "fig", "grape").stream(),
                 Arrays.asList("lemon", "orange", "pear").stream()
             ).stream();
 
-            List<String> flatList = listOfLists
+            List<String> flatList = streamOfStreams
                 .flatMap(stream -> stream) // Flatt ut samlingene
                 .collect(Collectors.toList());
             
             
-            // flatList.forEach(System.out::println);
+           // flatList.forEach(System.out::println);
             
 
     		//-------------------//
@@ -457,7 +478,7 @@ public class Hoved {
                     .flatMap(List::stream)
                     .collect(Collectors.toList());
 
-            //System.out.println(flattenedNumbers); 
+           // System.out.println(flattenedNumbers); 
                 
             
 
@@ -484,7 +505,7 @@ public class Hoved {
                     .map(Object::toString)
                     .collect(Collectors.toList());
                 
-                
+               System.out.println(filteredLetters);
             
 
      		//-------------------//
@@ -511,7 +532,7 @@ public class Hoved {
                         .distinct()
                         .collect(Collectors.toList());
 
-            //        System.out.println(uniqueWords);
+                    System.out.println(uniqueWords);
                 
             // Oppgave 1: Gitt en liste med lister av bokstaver, 
             // bruk flatMap til å lage en strøm med individuelle bokstaver.
