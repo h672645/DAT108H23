@@ -1,5 +1,7 @@
 package forelesning08_trader_input;
 
+
+//Feil i koden
 public class NotifyAll {
     public static void main(String[] args) {
         Bankkonto konto = new Bankkonto();
