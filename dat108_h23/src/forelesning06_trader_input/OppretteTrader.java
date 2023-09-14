@@ -21,7 +21,22 @@ public class OppretteTrader {
         // Start trådene
 //        thread1b.start();
 //        thread2b.start();
+        
+//        Opprette en instans av Runnable med lambda
+		Runnable program = () -> {
+			
+			for (int i = 0; i < 5; i++) {
+		         System.out.println("Tråd " + Thread.currentThread().getId() + ": Tell " + i);
+		     }
+			
+			
+		};
 		
+		Thread thread1c = new Thread(program);
+		Thread thread2c = new Thread(program);
+		
+		thread1c.start();
+		thread2c.start();
 	}
 
 }
@@ -44,9 +59,9 @@ class MyThread extends Thread {
 class MyRunnable implements Runnable {
  public void run() {
      // Koden som skal utføres av tråden
-     for (int i = 0; i < 5; i++) {
-         System.out.println("Tråd " + Thread.currentThread().getId() + ": Tell " + i);
-     }
+//     for (int i = 0; i < 5; i++) {
+//         System.out.println("Tråd " + Thread.currentThread().getId() + ": Tell " + i);
+//     }
  }
 }
 
